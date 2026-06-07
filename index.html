@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+            <title>Semillero Académico Ixcatlán</title>
+
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 0;
+                        background-color: #f7eaec;
+                    }
+
+                    header {
+                        background-color: #df8c7e;
+                        color: rgb(43, 39, 39);
+                        padding: 15px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 15px;
+                        flex-wrap: wrap;
+                        text-align: center;
+                    }
+
+                    header img {
+                        width: 80px;
+                        max-width: 100%;
+                        height: auto;
+                    }
+
+                    nav {
+                        background-color: #ecb0a6;
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        padding: 10px;
+                        gap: 10px;
+                    }
+
+                    nav button {
+                        padding: 10px 15px;
+                        background: none;
+                        border: none;
+                        color: rgb(43, 39, 39);
+                        border-radius: 5px;
+                        font-size: 16px;
+                        cursor: pointer;
+                        font-weight: bold;
+                    }
+
+                    nav button:hover {
+                        text-decoration: underline;
+                    }
+
+                    img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+
+                    section {
+                        display: none;
+                        padding: 20px;
+                    }
+
+                    .active {
+                        display: block;
+                    }
+
+                    h2 {
+                        color: #b3604c;
+                    }
+
+                    img.contenido {
+                        width: 100%;
+                        max-width: 400px;
+                        margin: auto;
+                        display: block;
+                    }
+
+                    .tabla-responsive {
+                        overflow-x: auto;
+                    }
+
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                    }
+
+                    table, th, td {
+                        border: 1px solid #8f8787;
+                    }
+
+                    th {
+                        background-color: #e7a392;
+                    }
+
+                    th, td {
+                        padding: 10px;
+                        text-align: center;
+                    }
+
+                    .mapa-responsive {
+                        position: relative;
+                        width: 100%;
+                        overflow: hidden;
+                        padding-top: 56.25%; /* Proporción 16:9 */
+                        border-radius: 10px;
+                    }
+
+                    .mapa-responsive iframe {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        border: 0;
+                    }
+
+                    .producto {
+                        border: 1px solid #ccc;
+                        border-radius: 10px;
+                        padding: 10px;
+                        margin: 10px;
+                        width: 280px;
+                        max-width: 100%;
+                        box-sizing: border-box;
+                        background-color: white;
+                        text-align: center;
+                    }
+
+                    .producto img {
+                        width: 100%;
+                        border-radius: 10px;
+                    }
+
+                    .contenedor-productos {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        gap: 20px;
+                    }
+
+                    .producto:hover {
+                        transform: scale(1.03);
+                        transition: 0.3s;
+                    }
+
+                    #lista-carrito {
+                        background: white;
+                        padding: 15px;
+                        border-radius: 10px;
+                        list-style: none;
+                    }
+
+                    #lista-carrito li {
+                        margin: 10px 0;
+                        padding: 10px;
+                        border-bottom: 1px solid #ccc;
+                    }
+
+                    #lista-carrito button {
+                        margin-left: 10px;
+                        background-color: red;
+                        color: white;
+                        border: none;
+                        padding: 5px;
+                        cursor: pointer;
+                        border-radius: 5px;
+                    }
+
+                    #notificacion {
+                        position: fixed;
+                        top: 15px;
+                        right: 15px;
+                        left: 15px;
+                        max-width: 400px;
+                        margin: auto;
+                        background-color: #e2c4bf;
+                        color: rgb(43, 39, 39);
+                        display: none;
+                        font-weight: bold;
+                        z-index: 1000;
+                    }
+
+                    #datosTransferencia {
+
+                        transition: 0.3s;
+                        background-color: #f8ece9;
+                        padding: 15px;
+                        border-radius: 10px;
+                        margin-top: 15px;
+                        border: 1px solid #d58b81;
+                    }
+
+                    #mensajeCompra {
+                        background-color: #f5ebe8;
+                        padding: 15px;
+                        border-radius: 10px;
+                        margin-top: 20px;
+                    }
+
+                    input, textarea, select {
+                        width: 100%;
+                        max-width: 400px;
+                        padding: 10px;
+                        box-sizing: border-box;
+                    }
+
+                    textarea {
+                        height: 80px;
+                    }
+
+                    button {
+                        background-color: #df8c7e;
+                        color: rgb(0, 0, 0);
+                        border: none;
+                        padding: 10px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    }
+
+                    button:hover {
+                        background-color: #df8c7e;
+                    }
+
+                    a {
+                        text-decoration: none;
+                        color: rgb(43, 39, 39);
+                    }
+
+                    svg {
+                        width: 20px;
+                    }
+
+                    footer {
+                        background-color: #df8c7e;
+                        color: rgb(43, 39, 39);
+                        text-align: center;
+                        padding: 10px;
+                    }
+                    
+                    @media (max-width: 768px) {
+                        header {
+                            flex-direction: column;
+                        }
+                        nav {
+                            flex-direction: column;
+                        }
+                        nav button {
+                            width: 90%;
+                        }
+                        .producto {
+                            width: 95%;
+                        }
+                        h1 {
+                            font-size: 1.8rem;
+                        }
+                        h2 {
+                            font-size: 1.4rem;
+                        }
+                        p {
+                            font-size: 1rem;
+                        }
+                    }
+
+                </style>
+
+    </head>
+
+    <body>
+
+        <header>
+            <!-- LOGO -->
+            <img src="logo.png" alt="Logo del semillero">
+            <div>
+                <h1>Semillero Académico Ixcatlán</h1>
+                <h3>Conservando la biodiversidad</h3>
+            </div>
+        </header>
+
+        <nav>
+            <button onclick="mostrarSeccion('inicio')">Inicio</button>
+            <button onclick="mostrarSeccion('datos')">Datos del Banco</button>
+            <button onclick="mostrarSeccion('institucion')">Acerca de nosotros</button>
+            <button onclick="mostrarSeccion('compras')">Compras</button>
+            <button onclick="mostrarSeccion('crecimiento')">Calcular crecimiento</button>
+        </nav>
+
+        <!-- INICIO -->
+        <section id="inicio" class="active">
+            <h2>Bancos de semillas</h2>
+
+            <h3>¿Qué es un banco de semillas?</h3>
+            <p>
+                Los bancos de semillas son instrumentos utilizados como una forma de solucionar los problemas de acceso y disponibilidad de semillas de calidad en comunidades rurales pobres. Funcionan cuando se habilita un almacén de semillas con un equipo que lo gestione, adquiriéndose semillas que se ponen a disposición de los agricultores y agricultoras que viven en condiciones de mayor vulnerabilidad.
+            </p>
+            <img src="semillas.jpg" class="contenido" alt="Semillas">
+
+            <h3>¿Para qué sirve un banco de semillas?</h3>
+            <p>
+                Un banco de semillas sirve para conservar la biodiversidad vegetal, almacenando semillas a largo plazo para protegerlas de desastres naturales, enfermedades o el cambio climático. Estas instalaciones garantizan la seguridad alimentaria, permiten la restauración de ecosistemas y facilitan la investigación agrícola.
+            </p>
+
+            <img src="agricultura.jpg" class="contenido" alt="Agricultura">
+
+            <h3>Importancia de conservar semillas nativas</h3>
+            <p>
+                Conservar semillas nativas en un banco es crucial para proteger la biodiversidad genética, garantizando la seguridad alimentaria y la adaptación al cambio climático. Estas semillas locales han evolucionado para ser resistentes a plagas y climas extremos que se puedan dar en la comunidad, permitiendo la soberanía alimentaria, la preservación de la identidad cultural y la recuperación tras desastres naturales.
+            </p>
+
+            <h3>Proyecto de un banco de semillas en el EMSAD 24 "Ixcatlán"</h3>
+            <p>
+                Se busca desarrollar un banco de semillas dentro de la institución que sea capaz de almacenar semillas originarias de la comunidad, como lo son las semillas de calabaza, maíz y frijol.
+                El proyecto busca preservar semillas de la comunidad y fomentar el cuidado del medio ambiente, además de buscar una manera para comercializar las semillas almacenadas en el banco, así como la posibilidad de recibir donaciones de semillas o incluso llegar a comprar una parte de las cosechas a personas que lo necesiten.
+            </p>
+        </section>
+
+        <!-- DATOS -->
+        <section id="datos">
+            <h2>Datos del Banco</h2>
+
+            <h3>Semillas almacenadas</h3>
+            <p>
+                Las semillas que se están almacenando en el banco actualmente son semillas de maíz, frijol y calabaza, de las cuales se tiene distintas variedades de cada especie. <br>
+                En el caso de la calabaza se cuenta con semillas de calabaza chilacayota y calabaza güicha; los tipos de frijol con el que se cuenta son frijol negro, frijol blanco y frijol pinto; por último, en el caso del maíz se cuenta con semillas de maíz de distintos colores, como lo son el maíz blanco, amarillo, azul, morado y rojo.
+            </p>
+            <img src="semillas_banco.jpg" class="contenido" alt="Semillas en el banco">
+
+            <h3>Semillas de maíz</h3>
+            <div class="tabla-responsive">
+            <table>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Cantidad (gr)</th>
+                </tr>
+                <tr>
+                    <td>Maíz amarillo</td>
+                    <td>590</td>
+                </tr>
+                <tr>
+                    <td>Maíz blanco</td>
+                    <td>300</td>
+                </tr>
+                <tr>
+                    <td>Maíz morado</td>
+                    <td>200</td>
+                </tr>
+                <tr>
+                    <td>Maíz azul</td>
+                    <td>190</td>
+                </tr>
+                <tr>
+                    <td>Maíz rojo</td>
+                    <td>80</td>
+                </tr>
+            </table>
+            </div>
+
+            <h3>Semillas de frijol</h3>
+            <div class="tabla-responsive">
+            <table>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Cantidad (gr)</th>
+                </tr>
+                <tr>
+                    <td>Frijol negro</td>
+                    <td>300</td>
+                </tr>
+                <tr>
+                    <td>Frijol blanco</td>
+                    <td>150</td>
+                </tr>
+                <tr>
+                    <td>Frijol pinto</td>
+                    <td>250</td>
+                </tr>
+            </table>
+            </div>
+
+            <h3>Semillas de calabaza</h3>
+            <div class="tabla-responsive">
+            <table>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Cantidad (gr)</th>
+                </tr>
+                <tr>
+                    <td>Calabaza chilacayota</td>
+                    <td>150</td>
+                </tr>
+                <tr>
+                    <td>Calabaza güicha</td>
+                    <td>130</td>
+                </tr>
+            </table>
+            </div>
+
+            <p>Cada semilla requiere cuidados específicos para su producción y conservación.</p>
+        </section>
+
+        <!-- INSTITUCION -->
+        <section id="institucion">
+            <h2>Institución</h2>
+
+            <h3>EMSaD 24 Santo Domingo Ixcatlán</h3>
+            <p>
+                El centro EMSaD 24 "Ixcatlán" es una institución de nivel medio superior que busca el desarrollo y aprendizaje de los estudiantes mediante el desarrollo de distintos proyenctos comunitarios dentro de sus materias asignadas.
+            </p>
+            <h3>Misión</h3>
+            <p>
+                Ofrecer a la población oaxaqueña educación media superior en las modalidades de bachillerato tecnológico bivalente y bachillerato general, que permita a los alumnos la continuación de sus estudios en el nivel superior, 
+                así como el adecuado desempeño de sus egresados en su vida profesional, contribuyendo al desarrollo socioeconómico del estado de Oaxaca en función de las características y necesidades específicas de cada región.
+            </p>
+            <img src="escuela.jpeg" class="contenido" alt="Escuela">
+            <h3>¿Deseas donar semillas?</h3>
+            <p>
+                Visita nuestras instalaciones para recibir más información o contáctanos por nuestro correo electrónico:
+            </p>
+            <p><strong>
+                ¡Tu donación puede ser de gran ayuda para la conservación de especies nativas!
+            </strong></p>
+            <p><strong>Ubicación:</strong></p>
+            <div class="mapa-responsive">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d238.5836156041367!2d-97.5339025!3d16.9086189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c7c565f8b7d9cb%3A0xfd19b799e668fa1b!2sCECyTE%20Emsad%2024%20%22Ixcatl%C3%A1n%22!5e0!3m2!1ses-419!2smx!4v1777925091664!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <p><strong>Correo electrónico de la institución:</strong></p>
+            <p><u>emsad24@cecyteo.edu.mx</u></p>
+
+        </section>
+
+        <!-- COMPRAS -->
+        <section id="compras">
+            <h2>Compras</h2>
+
+            <p>
+                <strong>¡Puedes ayudarnos comprando nuestros productos!</strong>
+            </p>
+
+            <!-- PRODUCTOS -->
+
+                <!-- MAÍZ -->
+                <h2>Semillas de Maíz</h2>
+
+                <div class="contenedor-productos">
+                    <div class="producto">
+                        <img src="maiz_amarillo.webp" alt="Maíz Amarillo">
+                        <h3>Maíz Amarillo</h3>
+                        <p>Precio por bolsa (500gr):</p>
+                        <p>$10</p>
+                        <button onclick="agregarCarrito('Maíz Amarillo', 10)">
+                            Agregar al carrito
+                        </button>
+                    </div>
+                
+
+                    <div class="producto">
+                        <img src="maiz_blanco.webp" alt="Maíz Blanco">
+                        <h3>Maíz Blanco</h3>
+                        <p>Precio por bolsa (500gr):</p>
+                        <p>$12</p>
+                        <button onclick="agregarCarrito('Maíz Blanco', 12)">
+                            Agregar al carrito
+                        </button>
+                    </div>
+
+                    <div class="producto">
+                        <img src="maiz_morado.webp" alt="Maíz Morado">
+                        <h3>Maíz Morado</h3>
+                        <p>Precio por bolsa (500gr):</p>
+                        <p>$14</p>
+                        <button onclick="agregarCarrito('Maíz Morado', 14)">
+                            Agregar al carrito
+                        </button>
+                    </div>
+
+                    <div class="producto">
+                        <img src="maiz_azul.webp" alt="Maíz Azul">
+                        <h3>Maíz Azul</h3>
+                        <p>Precio por bolsa (500gr):</p>
+                        <p>$12</p>
+                        <button onclick="agregarCarrito('Maíz Azul', 12)">
+                            Agregar al carrito
+                        </button>
+                    </div>
+
+                    <div class="producto">
+                        <img src="maiz_rojo.webp" alt="Maíz Rojo">
+                        <h3>Maíz Rojo</h3>
+                        <p>Precio por bolsa (500gr):</p>
+                        <p>$18</p>
+                        <button onclick="agregarCarrito('Maíz Rojo', 18)">
+                            Agregar al carrito
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- FRIJOL -->
+                <h2>Semillas de Frijol</h2>
+
+                <div class="contenedor-productos">
+                    <div class="producto">
+                        <img src="frijol_negro.jpg" alt="Frijol Negro">
+                        <h3>Frijol Negro</h3>
+                        <p>Precio por bolsa (500gr):</p>
+                        <p>$20</p>
+                        <button onclick="agregarCarrito('Frijol Negro', 20)">
+                            Agregar al carrito
+                        </button>
+                    </div>
+
+                    <div class="producto">
+                        <img src="frijol_blanco.jpg" alt="Frijol Blanco">
+                        <h3>Frijol Blanco</h3>
+                        <p>Precio por bolsa (500gr):</p>
+                        <p>$25</p>
+                        <button onclick="agregarCarrito('Frijol Blanco', 25)">
+                            Agregar al carrito
+                        </button>
+                    </div>
+
+                    <div class="producto">
+                        <img src="frijol_pinto.jpg" alt="Frijol Pinto">
+                        <h3>Frijol Pinto</h3>
+                        <p>Precio por bolsa (500gr):</p>
+                        <p>$22</p>
+                        <button onclick="agregarCarrito('Frijol Pinto', 22)">
+                            Agregar al carrito
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- CALABAZA -->
+                <h2>Semillas de Calabaza</h2>
+
+                <div class="contenedor-productos">
+                    <div class="producto">
+                        <img src="chilacayota.jpg" alt="Calabaza Chilacayota">
+                        <h3>Calabaza Chilacayota</h3>
+                        <p>Precio por bolsa (500gr):</p>
+                        <p>$50</p>
+                        <button onclick="agregarCarrito('Calabaza Chilacayota', 50)">
+                            Agregar al carrito
+                        </button>
+                    </div>
+
+                    <div class="producto">
+                        <img src="guicha.jpg" alt="Calabaza Güicha">
+                        <h3>Calabaza Güicha</h3>
+                        <p>Precio por bolsa (500gr):</p>
+                        <p>$40</p>
+                        <button onclick="agregarCarrito('Calabaza Güicha', 40)">
+                            Agregar al carrito
+                        </button>
+                    </div>
+
+                </div>
+
+
+            <hr>
+
+             <!-- CARRITO -->
+            <h2>Carrito de compras</h2>
+            <ul id="lista-carrito"></ul>
+            <h3 id="total">Total: $0</h3>
+            <button onclick="vaciarCarrito()">
+                Vaciar carrito
+            </button>
+
+            <br><br>
+            <button onclick="mostrarFormulario()">
+                Finalizar compra
+            </button>
+
+            <!-- NOTIFICACIÓN -->
+             <div id="notificacion">
+                Producto agregado al carrito
+             </div>
+
+            <!-- FORMULARIO -->
+             <div id="formulario-compra" style="display: none; margin-top: 20px;">
+
+                <h2>Formulario de compra</h2>
+
+                <label>Nombre completo:</label><br>
+                <input type="text" id="nombreCliente"><br><br>
+
+                <label>Correo electrónico:</label><br>
+                <input type="email" id="correoCliente"><br><br>
+
+                <label>Dirección:</label><br>
+                <textarea id="direccionCliente"></textarea><br><br>
+
+                <label>Método de pago:</label><br>
+
+                <select id="metodoPago" onchange="mostrarTransferencia()">
+                    <option value="Transferencia bancaria">Transferencia bancaria</option>
+                    <option value="Pago en efectivo">Pago en efectivo</option>
+                </select>
+
+                <div id="datosTransferencia">
+                    <h3>Datos para transferencia bancaria</h3>
+
+                    <label>Nombre del banco:</label><br>
+                    <input type="text" id="nombreBanco"><br><br>
+
+                    <label>Número de cuenta:</label><br>
+                    <input type="number" id="numeroCuenta"><br><br>
+
+                    <label>CLABE interbancaria:</label><br>
+                    <input type="number" id="clabe"><br><br>
+
+                    <label>Referencia o folio de transferencia:</label><br>
+                    <input type="text" id="referencia"><br><br>
+                </div>
+
+                <br><br>
+
+                <button onclick="procesarCompra()">
+                    Confirmar compra
+                </button>
+
+             </div>
+
+             <h2 id="mensajeCompra"></h2>
+
+        </section>
+
+
+        <!-- CRECIMIENTO -->
+        <section id="crecimiento">
+            <h2>Cálculo de crecimiento del banco</h2>
+
+            <p>
+                Ingresa los datos para calcular el crecimiento del banco de semillas
+            </p>
+
+            <label>Semillas actuales:</label><br>
+            <input type="number" id="actual"><br><br>
+
+            <label>Semillas añadidas:</label><br>
+            <input type="number" id="ingreso"><br><br>
+
+            <label>Semillas retiradas:</label><br>
+            <input type="number" id="salida"><br><br>
+
+            <label>Semillas perdidas:</label><br>
+            <input type="number" id="perdida"><br><br>
+
+            <button onclick="calcularCrecimiento()">Calcular</button>
+
+            <h3 id="resultado"></h3>
+            <hr>
+            <h2>Modelo por tasa de crecimiento</h2> 
+
+            <label>Semillas actuales:</label><br>
+            <input type="number" id="n_actual"><br><br>
+
+            <label>Tasa de crecimiento (ingresar porcentaje por decimales):</label><br>
+            <input type="number" step="0.01" id="tasa"><br><br>
+
+            <button onclick="calcularTasa()">Calcular crecimiento</button>
+
+            <h3 id="resultado_tasa"></h3>
+
+        </section>
+
+        <footer>
+            <p><strong>© 2026 Semillero Académico Ixcatlán</strong></p>
+            <p><strong>Correo electrónico:</strong><u>semilleroacademicoix@gmail.com</u></p>
+            <p><strong>Número de contacto:</strong> 9531716578</p>
+            <p><strong>Redes sociales:</strong>
+                <a href="https://www.facebook.com/CecyteEmsadIxcatlan?locale=es_LA" target="_blank">
+                    Facebook
+                    <svg viewBox="0 0 666.667 666.667"><defs><clipPath id="facebook_icon__a" clipPathUnits="userSpaceOnUse"><path d="M0 700h700V0H0Z"/></clipPath></defs><g clip-path="url(#facebook_icon__a)" transform="matrix(1.33333 0 0 -1.33333 -133.333 800)"><path d="M0 0c0 138.071-111.929 250-250 250S-500 138.071-500 0c0-117.245 80.715-215.622 189.606-242.638v166.242h-51.552V0h51.552v32.919c0 85.092 38.508 124.532 122.048 124.532 15.838 0 43.167-3.105 54.347-6.211V81.986c-5.901.621-16.149.932-28.882.932-40.993 0-56.832-15.528-56.832-55.9V0h81.659l-14.028-76.396h-67.631v-171.773C-95.927-233.218 0-127.818 0 0" style="fill:#0866ff;fill-opacity:1;fill-rule:nonzero;stroke:none" transform="translate(600 350)"/><path d="m0 0 14.029 76.396H-67.63v27.019c0 40.372 15.838 55.899 56.831 55.899 12.733 0 22.981-.31 28.882-.931v69.253c-11.18 3.106-38.509 6.212-54.347 6.212-83.539 0-122.048-39.441-122.048-124.533V76.396h-51.552V0h51.552v-166.242a250.559 250.559 0 0 1 60.394-7.362c10.254 0 20.358.632 30.288 1.831V0Z" style="fill:#fff;fill-opacity:1;fill-rule:nonzero;stroke:none" transform="translate(447.918 273.604)"/></g></svg>
+                </a>
+            </p>
+        </footer>
+
+        <script>
+            function mostrarSeccion(id) {
+                let secciones = document.querySelectorAll("section");
+                secciones.forEach(sec => sec.classList.remove("active"));
+
+                document.getElementById(id).classList.add("active");
+            }
+
+            function calcularCrecimiento() {
+                let Nt = parseFloat(document.getElementById("actual").value);
+                let ingreso = parseFloat(document.getElementById("ingreso").value);
+                let salida = parseFloat(document.getElementById("salida").value);
+                let perdida = parseFloat(document.getElementById("perdida").value);
+
+                let Nt1 = Nt + ingreso - salida - perdida;
+                let mensaje = "Resultado: " + Nt1 + " semillas. ";
+
+                if (Nt1 > Nt) {
+                    mensaje += "El banco crece.";
+                } else if (Nt1 === Nt) {
+                    mensaje += "El banco se mantiene estable.";
+                } else {
+                    mensaje += "El banco disminuye.";
+                }
+
+                document.getElementById("resultado").innerText = mensaje;
+            }
+
+            function calcularTasa() {
+                let N = parseFloat(document.getElementById("n_actual").value);
+                let r = parseFloat(document.getElementById("tasa").value);
+
+                let resultado = r * N;
+
+                document.getElementById("resultado_tasa").innerText = "Resultado: " + resultado + " semillas aproximadas en el siguiente periodo.";
+            }
+
+        </script>
+
+        <script>
+            document.querySelectorAll('input[type="number"]')
+            .forEach(input => {
+                input.addEventListener('keydown', function(event) {
+                    const teclasBloqueadas = [
+                        "e",
+                        "E",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ];
+                if(teclasBloqueadas.includes(event.key)) {
+                    event.preventDefault();
+                }
+
+                });
+            });
+        </script>
+
+        <script>
+            
+            let carrito = [];
+            let total = 0;
+
+            function agregarCarrito(nombre, precio) {
+                carrito.push({
+                    nombre: nombre,
+                    precio: precio,
+                });
+
+                total += precio;
+                actualizarCarrito();
+                mostrarNotificacion(nombre);
+            }
+
+            function actualizarCarrito() {
+                let lista = document.getElementById("lista-carrito");
+                lista.innerHTML = "";
+                carrito.forEach((producto, index) => {
+                    let li = document.createElement("li");
+                    li.innerHTML = 
+                        producto.nombre + " - $" + producto.precio + 
+                        ` <button onclick="eliminarProducto(${index})">
+                            Eliminar
+                        </button>`;  
+
+                    lista.appendChild(li);
+                });
+
+                document.getElementById("total").innerText = 
+                    "Total: $" + total;
+            }
+
+            function eliminarProducto(index) {
+                total -= carrito[index].precio;
+                carrito.splice(index, 1);
+                actualizarCarrito();
+            }
+
+            function vaciarCarrito() {
+                carrito = [];
+                total = 0;
+                actualizarCarrito();
+            }
+
+        </script>
+
+        <script>
+            function mostrarNotificacion(producto) {
+                let notificacion = document.getElementById("notificacion");
+                notificacion.innerText = producto + " agregado al carrito";
+                notificacion.style.display = "block";
+                setTimeout(() => {
+                    notificacion.style.display = "none";
+                }, 2500);
+            }
+        </script>
+
+        <script>
+            function mostrarFormulario() {
+                if(carrito.length === 0) {
+                    alert("El carrito está vacío");
+                    return;
+                }
+
+                document.getElementById("formulario-compra").style.display = "block";
+            }
+
+            function procesarCompra() {
+                let nombre = 
+                document.getElementById("nombreCliente").value;
+                let correo = 
+                document.getElementById("correoCliente").value;
+                let direccion = 
+                document.getElementById("direccionCliente").value;
+                let metodo = 
+                document.getElementById("metodoPago").value;
+
+                if(
+                    nombre === "" ||
+                    correo === "" ||
+                    direccion === ""
+                ) {
+                    alert("Complete todos los campos");
+                    return;
+                }
+
+                if(metodo === "Transferencia bancaria") {
+
+                    let banco = document.getElementById("nombreBanco").value;
+                    let cuenta = document.getElementById("numeroCuenta").value;
+                    let clabe = document.getElementById("clabe").value;
+                    let referencia = document.getElementById("referencia").value;
+
+                    if(
+                        banco === ""||
+                        cuenta === ""||
+                        clabe === ""||
+                        referencia === ""
+                    ) {
+                        alert(
+                            "Completa todos los datos de transferencia"
+                        );
+                        return;
+                    }
+
+                    if(clabe.length !==18) {
+                        alert("La CLABE debe tener 18 dígitos");
+                        return;
+                    }
+
+                    alert(
+                        "El pago por transferencia bancaria no está disponible actualmente.\n\n" + 
+                        "Favor de realizar el pago en efectivo en las instalaciones de la institución."
+                    );
+                    return;
+
+                }
+
+                if(metodo === "Pago en efectivo") {
+                    document.getElementById("mensajeCompra").innerHTML =
+                    "Gracias por su compra, " + nombre + ".<br><br>" + 
+                    "Favor de pasar a recoger los productos solicitados " + "y realizar el pago en las instalaciones de la institución.<br><br>" + 
+                    "Total a pagar: $" + total;
+                }
+
+                carrito = [];
+                total = 0;
+
+                actualizarCarrito();
+
+                document.getElementById("formulario-compra").style.display = "none";
+                return;
+            }
+
+        </script>
+
+        <script>
+            function mostrarTransferencia() {
+                let metodo = document.getElementById("metodoPago").value;
+                let formulario = document.getElementById("datosTransferencia");
+                if(metodo === "Transferencia bancaria") {
+                    formulario.style.display = "block";
+                } else {
+                    formulario.style.display = "none";
+                }
+            }
+        </script>
+
+    </body>
+</html>
